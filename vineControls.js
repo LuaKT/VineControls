@@ -1,8 +1,6 @@
 //Watch for video element
 $( document ).on( "DOMNodeInserted", function( e ) {
-	if (e.target.className == "ember-view vine-player") {
 		run(e.target);
-	}
 });
 
 //Load volume or use 50% default
@@ -11,6 +9,9 @@ var volume = localStorage.vineVolume || 0.5;
 function run (target) {
 	// Grab video element
 	var video = $(target).find("video")[0];
+    if (!video) {
+        return false
+    }
 
 	//Show Controls on load
 	video.controls = true;
